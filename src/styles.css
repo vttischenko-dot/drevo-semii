@@ -1,0 +1,137 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-cream: var(--cream);
+  --color-cream-deep: var(--cream-deep);
+  --color-wood: var(--wood);
+  --color-wood-light: var(--wood-light);
+
+  --font-display: "Cormorant Garamond", ui-serif, Georgia, serif;
+  --font-script: "Marck Script", "Great Vibes", cursive;
+  --font-sans: "Montserrat", ui-sans-serif, system-ui, sans-serif;
+
+  --shadow-soft: 0 10px 30px -12px color-mix(in oklab, var(--wood) 22%, transparent);
+  --shadow-card: 0 6px 24px -10px color-mix(in oklab, var(--wood) 30%, transparent);
+}
+
+:root {
+  --radius: 0.75rem;
+
+  /* Warm cream & wood palette from KP */
+  --cream: oklch(0.965 0.022 82);          /* #F5EEDF ish */
+  --cream-deep: oklch(0.945 0.028 82);
+  --wood: oklch(0.36 0.055 55);            /* deep brown */
+  --wood-light: oklch(0.55 0.09 55);
+
+  --background: oklch(0.965 0.022 82);
+  --foreground: oklch(0.24 0.04 45);
+
+  --card: oklch(0.985 0.012 82);
+  --card-foreground: oklch(0.24 0.04 45);
+
+  --popover: oklch(0.985 0.012 82);
+  --popover-foreground: oklch(0.24 0.04 45);
+
+  --primary: oklch(0.36 0.055 55);
+  --primary-foreground: oklch(0.98 0.015 82);
+
+  --secondary: oklch(0.92 0.03 82);
+  --secondary-foreground: oklch(0.28 0.05 50);
+
+  --muted: oklch(0.93 0.022 82);
+  --muted-foreground: oklch(0.45 0.03 55);
+
+  --accent: oklch(0.62 0.12 45);           /* warm gold */
+  --accent-foreground: oklch(0.98 0.015 82);
+
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.984 0.003 247.858);
+
+  --border: oklch(0.86 0.028 70);
+  --input: oklch(0.88 0.025 75);
+  --ring: oklch(0.55 0.08 55);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.01em;
+  }
+
+  .font-script {
+    font-family: var(--font-script);
+    font-weight: 400;
+  }
+}
+
+@utility container-tight {
+  width: 100%;
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@utility animate-fade-up {
+  animation: fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
